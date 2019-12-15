@@ -1,0 +1,17 @@
+C:\Users\educs\source\repos\Chat\Server\bin\Debug\Server.exe.config
+C:\Users\educs\source\repos\Chat\Server\bin\Debug\Server.exe
+C:\Users\educs\source\repos\Chat\Server\bin\Debug\Server.pdb
+C:\Users\educs\source\repos\Chat\Server\bin\Debug\Chat.dll
+C:\Users\educs\source\repos\Chat\Server\bin\Debug\Chat.pdb
+C:\Users\educs\source\repos\Chat\Server\obj\Debug\Server.csprojAssemblyReference.cache
+C:\Users\educs\source\repos\Chat\Server\obj\Debug\MainWindow.g.cs
+C:\Users\educs\source\repos\Chat\Server\obj\Debug\App.g.cs
+C:\Users\educs\source\repos\Chat\Server\obj\Debug\Server_MarkupCompile.cache
+C:\Users\educs\source\repos\Chat\Server\obj\Debug\Server_MarkupCompile.lref
+C:\Users\educs\source\repos\Chat\Server\obj\Debug\MainWindow.baml
+C:\Users\educs\source\repos\Chat\Server\obj\Debug\Server.g.resources
+C:\Users\educs\source\repos\Chat\Server\obj\Debug\Server.Properties.Resources.resources
+C:\Users\educs\source\repos\Chat\Server\obj\Debug\Server.csproj.GenerateResource.cache
+C:\Users\educs\source\repos\Chat\Server\obj\Debug\Server.csproj.CopyComplete
+C:\Users\educs\source\repos\Chat\Server\obj\Debug\Server.exe
+C:\Users\educs\source\repos\Chat\Server\obj\Debug\Server.pdb

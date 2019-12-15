@@ -1,0 +1,17 @@
+C:\Users\educs\source\repos\Chat\Client\bin\Debug\Client.exe.config
+C:\Users\educs\source\repos\Chat\Client\bin\Debug\Client.exe
+C:\Users\educs\source\repos\Chat\Client\bin\Debug\Client.pdb
+C:\Users\educs\source\repos\Chat\Client\obj\Debug\Client.csprojAssemblyReference.cache
+C:\Users\educs\source\repos\Chat\Client\obj\Debug\MainWindow.g.cs
+C:\Users\educs\source\repos\Chat\Client\obj\Debug\App.g.cs
+C:\Users\educs\source\repos\Chat\Client\obj\Debug\Client_MarkupCompile.cache
+C:\Users\educs\source\repos\Chat\Client\obj\Debug\Client_MarkupCompile.lref
+C:\Users\educs\source\repos\Chat\Client\obj\Debug\MainWindow.baml
+C:\Users\educs\source\repos\Chat\Client\obj\Debug\Client.g.resources
+C:\Users\educs\source\repos\Chat\Client\obj\Debug\Client.Properties.Resources.resources
+C:\Users\educs\source\repos\Chat\Client\obj\Debug\Client.csproj.GenerateResource.cache
+C:\Users\educs\source\repos\Chat\Client\obj\Debug\Client.exe
+C:\Users\educs\source\repos\Chat\Client\obj\Debug\Client.pdb
+C:\Users\educs\source\repos\Chat\Client\bin\Debug\Chat.dll
+C:\Users\educs\source\repos\Chat\Client\bin\Debug\Chat.pdb
+C:\Users\educs\source\repos\Chat\Client\obj\Debug\Client.csproj.CopyComplete

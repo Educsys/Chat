@@ -1,0 +1,71 @@
+﻿<Window x:Class="Server.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Server"
+        mc:Ignorable="d"
+        Title="Чат сервер" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.ColumnSpan="2"
+                    Orientation="Horizontal"
+                    Margin="5">
+            <TextBlock Text="Имя сервера:"
+                       VerticalAlignment="Center"/>
+            <TextBox Width="170"
+                     Margin="5"
+                     Text="{Binding ServerConfig.Name, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+            <TextBlock Text="Интерфейс:"
+                       VerticalAlignment="Center"/>
+            <ComboBox Width="130"
+                      Margin="5"
+                      ItemsSource="{Binding HostAddresses}"
+                      SelectedItem="{Binding ServerConfig.Address}"></ComboBox>
+            <TextBlock Text="Порт:"
+                       VerticalAlignment="Center"/>
+            <TextBox Width="50"
+                     Margin="5"
+                     Text="{Binding ServerConfig.Port, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+            <Button Content="Старт"
+                    Margin="5"
+                    Width="70"
+                    Command="{Binding Startserver}"></Button>
+            <Button Content="Стоп"
+                    Margin="5"
+                    Width="70"
+                    Command="{Binding Stopserver}"></Button>
+        </StackPanel>
+        <GroupBox Grid.Row="1"
+                  Header="Подключенные пользователи:">
+            <ListBox ItemsSource="{Binding Server.Clients}"
+                     SelectedItem="{Binding Server.SelectedClient}">
+                <ListBox.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="Отключить пользователя"
+                                  Command="{Binding DisconnectSelectedUser}"/>
+                    </ContextMenu>
+                </ListBox.ContextMenu>
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Name}"/>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </GroupBox>
+        <GroupBox Grid.Row="1"
+                  Grid.Column="1"
+                  Header="Лог:">
+            <ListBox ItemsSource="{Binding LogManager.LogRecords}">
+
+            </ListBox>
+        </GroupBox>
+    </Grid>
+</Window>
