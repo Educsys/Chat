@@ -1,0 +1,5 @@
+C:\Users\educs\source\repos\Chat\Chat\bin\Debug\Chat.dll
+C:\Users\educs\source\repos\Chat\Chat\bin\Debug\Chat.pdb
+C:\Users\educs\source\repos\Chat\Chat\obj\Debug\Chat.dll
+C:\Users\educs\source\repos\Chat\Chat\obj\Debug\Chat.pdb
+C:\Users\educs\source\repos\Chat\Chat\obj\Debug\ChatBase.csprojAssemblyReference.cache
