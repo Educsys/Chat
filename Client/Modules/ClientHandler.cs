@@ -2,18 +2,20 @@
 using Chat.Model;
 using Client.Model;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Net.Sockets;
 using System.Runtime.Serialization.Formatters.Binary;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
 namespace Client.Modules
 {
+    /// <summary>
+    /// ОСновной класс реализующий функцию чат клиента.
+    /// </summary>
     class ClientHandler : INotifyPropertyChanged
     {
         public ObservableCollection<HistoryUserInfo> UsersOnline { get; set; } = new ObservableCollection<HistoryUserInfo>();
@@ -83,11 +85,13 @@ namespace Client.Modules
         {
             var message = new Message()
             {
+                Id = Guid.NewGuid().ToString(),
+                SendTime = DateTime.Now.ToString("dd MMM yyyy, HH:mm:ss"),
                 Sender = MyUserInfo,
                 Recipient = new UserInfo() { Name = SelectedUser.Name, Id = SelectedUser.Id },
                 Text = text
             };
-            App.Current.Dispatcher.Invoke(() => SelectedUser.MessagesList.Add($"{DateTime.Now.ToLocalTime()} {MyUserInfo.Name}: {message.Text}"));
+            App.Current.Dispatcher.Invoke(() => SelectedUser.MessagesList.Add(message));
             SendDataToServer(TypeOfData.Message, message);
         }
         private void SendDataToServer<T>(TypeOfData typeOfData, T data)
@@ -131,13 +135,20 @@ namespace Client.Modules
                             ReceiveNewUserList();
                             break;
                         case TypeOfData.ERROR:
-                            ReceiceErrorFromServer();
+                            ReceiceResponseFromServer(MessageStatus.Error);
+                            break;
+                        case TypeOfData.OK:
+                            ReceiceResponseFromServer(MessageStatus.OK);
                             break;
                     }
                 }
-                catch (Exception ex)
+                catch(IOException)
                 {
-                    var test = ex;
+                    break;
+                }
+                catch (Exception ex) when (ex.GetType() != typeof(IOException))
+                {
+                    MessageBox.Show($"Ошибка при получении данных от сервера {ex.Message}. Переподключитесь");
                     break;
                 }
             }
@@ -149,10 +160,16 @@ namespace Client.Modules
             return (T)formatter.Deserialize(Client.GetStream());
         }
 
-        private void ReceiceErrorFromServer()
+        private void ReceiceResponseFromServer(MessageStatus status)
         {
-            var exception = ReceiveDataFromServer<Exception>();
-            MessageBox.Show($"Ошибка отправки сообщения {exception.Message}");
+            var message = ReceiveDataFromServer<Message>();
+            var user = UsersOnline.Where(w => w.Id == message.Recipient.Id).FirstOrDefault();
+            if (user != null)
+            {
+                var msg = user.MessagesList.Where(w => w.Id == message.Id).FirstOrDefault();
+                if (msg != null)
+                    msg.Status = status;
+            }
         }
 
         private void ReceiveDisconnect()
@@ -164,7 +181,7 @@ namespace Client.Modules
         {
             var message = ReceiveDataFromServer<Message>();
             var user = UsersOnline.Where(w => w.Id == message.Sender.Id).FirstOrDefault();
-            App.Current.Dispatcher.Invoke(() => user.MessagesList.Add($"{DateTime.Now.ToLocalTime()} {user.Name}: {message.Text}"));
+            App.Current.Dispatcher.Invoke(() => user.MessagesList.Add(message));
             if (SelectedUser != user)
                 user.HasUnreadMessages = true;
         }

@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Server.Model
 {
+    /// <summary>
+    /// Запись в логах сервера
+    /// </summary>
     public class LogRecord
     {
         public DateTime LogTime { get; set; }

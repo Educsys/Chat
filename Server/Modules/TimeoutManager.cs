@@ -1,14 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 
 namespace Server.Modules
 {
     /// <summary>
-    /// Класс таймера для периодической проверки неактивных пользователей
+    /// Класс таймера для периодической проверки неактивных пользователей.
+    /// Отправляет команду серверу на отключение неактивных пользователей по таймеру.
     /// </summary>
     public class TimeoutManager
     {

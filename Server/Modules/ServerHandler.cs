@@ -1,21 +1,19 @@
 ﻿using Chat.CommonModel;
 using Chat.Model;
 using Server.Model;
-using Server.Modules;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Net.Sockets;
 using System.Runtime.Serialization.Formatters.Binary;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Server.Modules
 {
     /// <summary>
-    /// Главный серверный класс
+    /// Класс реализующий чат сервер
+    /// Отвечает за отправку сообщений клиентам
     /// </summary>
     public class ServerHandler : INotifyPropertyChanged
     {
@@ -47,7 +45,7 @@ namespace Server.Modules
             {
                 Listener = new TcpListener(config.Address, config.Port);
                 Listener.Start();
-                LogManager.Instance.AddNewLogRecord(TypeOfLogRecord.Info, $"Сервер запущен: {config.Address}:{config.Port}");
+                LogManager.Instance.AddNewLogRecord(TypeOfLogRecord.Info, $"{config.Name} сервер запущен: {config.Address}:{config.Port}");
                 IsStarted = true;
                 var listentask = new Task(() => RunListener());
                 listentask.Start();
@@ -81,6 +79,7 @@ namespace Server.Modules
 
         public void StopServer()
         {
+            SendDisconnectToAllClients();
             try
             {
                 Listener.Stop();
@@ -112,6 +111,13 @@ namespace Server.Modules
                     }).ToArray();
             BroadcastNewClientsList();
         }
+
+        private void SendDisconnectToAllClients()
+        {
+            foreach (var client in Clients.ToArray())
+                DisconnectSelectedClient(client);
+        }
+
         public void DisconnectByUserDecision(ClientInfo clientInfo)
         {
             if (Clients.Contains(clientInfo))
@@ -132,6 +138,7 @@ namespace Server.Modules
                 BroadcastNewClientsList();
             }
         }
+
         public void BroadcastNewClientsList()
         {
             var clients = Clients
@@ -156,6 +163,7 @@ namespace Server.Modules
             MessageHistoryManager.Instance.AppendNewString(message);
             LogManager.Instance.AddNewLogRecord(TypeOfLogRecord.Info, $" Сообщение {message.Sender.Name} пользователю {message.Recipient.Name}");
         }
+
         private void SendDataToClient<T>(ClientInfo sender, ClientInfo recipient, TypeOfData typeOfData, T data)
         {
             try
@@ -165,13 +173,13 @@ namespace Server.Modules
                 if (data != null)
                     formatter.Serialize(recipient.Client.GetStream(), data);
                 if (sender != null)
-                    SendDataToClient(null, sender, TypeOfData.OK, (object)null);
+                    SendDataToClient(null, sender, TypeOfData.OK, data);
             }
             catch (Exception ex)
             {
                 LogManager.Instance.AddNewLogRecord(TypeOfLogRecord.Error, $"Ошибка отправки данных: {ex.Message}");
                 if (sender != null)
-                    SendDataToClient(null, sender, TypeOfData.ERROR, ex);
+                    SendDataToClient(null, sender, TypeOfData.ERROR, data);
             }
         }
 

@@ -1,14 +1,13 @@
 ﻿using Chat.Model;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Client.Model
 {
+    /// <summary>
+    /// Дополнение к классу содержащему базовую информация о клиент.
+    /// Содержит историю общения с данным клиентом.
+    /// </summary>
     class HistoryUserInfo: UserInfo, INotifyPropertyChanged
     {
         public HistoryUserInfo()
@@ -21,8 +20,8 @@ namespace Client.Model
             this.Name = user.Name;
         }
 
-        private ObservableCollection<string> messagesList = new ObservableCollection<string>();
-        public ObservableCollection<string> MessagesList
+        private ObservableCollection<Message> messagesList = new ObservableCollection<Message>();
+        public ObservableCollection<Message> MessagesList
         {
             get { return messagesList; }
             set 

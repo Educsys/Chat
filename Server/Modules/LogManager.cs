@@ -1,18 +1,14 @@
 ﻿using Server.Model;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Server.Modules
 {
     /// <summary>
-    /// Класс для отображения лога
+    /// Синглтон для хранения и добавления истории логов.
     /// </summary>
-   public class LogManager : INotifyPropertyChanged
+    public class LogManager : INotifyPropertyChanged
     {
         private LogManager()
         {

@@ -1,15 +1,15 @@
 ﻿using Chat.Model;
 using Server.Modules;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Sockets;
 using System.Runtime.Serialization.Formatters.Binary;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Server.Model
 {
+    /// <summary>
+    /// Хранит сущность подключенного клиента.
+    /// Отвечает за прием данных от клиента и отправку данных серверу.
+    /// </summary>
     public class ClientInfo : UserInfo
     {
         public TcpClient Client { get; set; }

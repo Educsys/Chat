@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Chat.Model
 {
+    /// <summary>
+    /// Определяет тип данных, которые будут следовать далее.
+    /// </summary>
     [Serializable]
     public enum TypeOfData
     {

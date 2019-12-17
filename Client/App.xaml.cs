@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Client.Modules;
+using Client.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -13,5 +15,19 @@ namespace Client
     /// </summary>
     public partial class App : Application
     {
+        public WindowsInteractionService WIS;
+        public App()
+        {
+            WIS = new WindowsInteractionService();
+
+            WIS.RegisterVMandWindow<MainWindowViewModel, MainWindow>();
+        }
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            base.OnStartup(e);
+            WIS.ShowModalWindow(new MainWindowViewModel());
+
+            Shutdown();
+        }
     }
 }

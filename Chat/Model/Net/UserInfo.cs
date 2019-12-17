@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace Chat.Model
 {
+    /// <summary>
+    /// Содержит базовую часть информации о чат клиенте для пересылки между сервером и клиентами.
+    /// </summary>
     [Serializable]
     public class UserInfo
     { 

@@ -1,13 +1,13 @@
 ﻿using Chat.Model;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Server.Modules
 {
+    /// <summary>
+    /// Синглтон для доступа к файлу с историе сообщений.
+    /// Добавляет новую строку к файлу.
+    /// </summary>
     public class MessageHistoryManager
     {
         private const string HISTORY_FILE_NAME = "History.txt";

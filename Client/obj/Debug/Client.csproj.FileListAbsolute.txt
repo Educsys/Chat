@@ -15,3 +15,4 @@ C:\Users\educs\source\repos\Chat\Client\obj\Debug\Client.pdb
 C:\Users\educs\source\repos\Chat\Client\bin\Debug\Chat.dll
 C:\Users\educs\source\repos\Chat\Client\bin\Debug\Chat.pdb
 C:\Users\educs\source\repos\Chat\Client\obj\Debug\Client.csproj.CopyComplete
+C:\Users\educs\source\repos\Chat\Client\obj\Debug\GeneratedInternalTypeHelper.g.cs

@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace Chat.CommonModel
 {
+    /// <summary>
+    /// Конфиг клиента или сервера
+    /// </summary>
     public class TCPConfig
     {
         public string Name { get; set; }
